@@ -13,7 +13,7 @@ session_start();
 </head>
 <body>
 <div class="contenedor">
-    <form action="procesarInicio.php" method="post">
+    <form action="../Controlador/procesarInicio.php" method="post">
 
         <p class="titulo">Iniciar Sesion</p>
         <label for="usuario"></label>
@@ -30,7 +30,7 @@ session_start();
     </form>
 
     <br></br>
-    <form action="registrarUsuario.php">
+    <form action="registroCliente.php">
         <br></br>
         <input class="botonRegistro" type="submit" id="botonRegistro" value="Registro">
     </form>
