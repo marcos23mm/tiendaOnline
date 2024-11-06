@@ -17,7 +17,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT * FROM tiendaOnline WHERE nickname = :nombreUser AND password = :contrasena");
+    $stmt = $conn->prepare("SELECT * FROM Cliente WHERE nickname = :nombreUser AND password = :contrasena");
     $stmt->bindParam(':nombreUser', $nickname);
     $stmt->bindParam(':contrasena', $password1);
 
