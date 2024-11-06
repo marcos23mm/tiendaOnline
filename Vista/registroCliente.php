@@ -13,7 +13,7 @@ session_start();
 </head>
 <body>
 <div class="contenedor">
-    <form action="procesarRegistro.php" method="post">
+    <form action="../Controlador/procesarRegistro.php" method="post">
 
         <p class="titulo">Iniciar Sesion</p>
         <label for="nombre"></label>
@@ -26,23 +26,23 @@ session_start();
 
         <br></br>
 
-        <label for="domicilio"></label>
-        <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" >
+        <label for="nickname"></label>
+        <input type="text" name="nickname" id="nickname" placeholder="Nickname" >
+
+        <br></br>
+
+        <label for="password"></label>
+        <input type="text" name="password" id="password" placeholder="Contraseña">
 
         <br></br>
 
         <label for="telefono"></label>
-        <input type="text" name="telefono" id="telefono" placeholder="Telefono">
+        <input type="password" name="telefono" id="telefono" placeholder="Telefono" >
 
         <br></br>
 
-        <label for="contraseña"></label>
-        <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña" >
-
-        <br></br>
-
-        <label for="usuario"></label>
-        <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+        <label for="domicilio"></label>
+        <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio">
 
         <br></br>
 
