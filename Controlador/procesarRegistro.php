@@ -20,7 +20,7 @@ if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['nickna
     $domicilio = $_POST['domicilio'];
 
 
-    $stmt = $conn->prepare("INSERT INTO tiendaOnline (nombre, apellido, nickname, password, telefono, domicilio) 
+    $stmt = $conn->prepare("INSERT INTO Cliente (nombre, apellido, nickname, password, telefono, domicilio) 
                                 VALUES (:nombre, :apellido, :nickname, :password, :telefono, :domicilio)");
 
     $stmt->bindParam(':nombre', $nombre);
