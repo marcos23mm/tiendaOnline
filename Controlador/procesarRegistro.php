@@ -32,7 +32,7 @@ if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['nickna
 
     $stmt->execute();
 
-    header('Location: inicioSesion.php');
+    header('Location: ../inicioSesion.php');
 
 }else{
     echo "Son necesarios todos los campos";
