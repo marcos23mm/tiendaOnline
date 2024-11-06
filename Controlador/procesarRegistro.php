@@ -25,7 +25,7 @@ if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['nickna
 
     $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':apellido', $apellido);
-    $stmt->bindParam(':nickname', $domicilio);
+    $stmt->bindParam(':nickname', $nickname);
     $stmt->bindParam(':password', $telefono);
     $stmt->bindParam(':telefono', $contraseña);
     $stmt->bindParam(':domicilio', $domicilio);
