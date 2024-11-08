@@ -4,7 +4,7 @@ session_name("");
 session_start();
 
 $servername = "localhost";
-$dbname = "";
+$dbname = "tiendaPHP";
 $username = "root";
 $password = "123";
 
