@@ -29,20 +29,23 @@ $stmt->execute();
         <th>Acciones</th>
     </tr>
     <?php
-    $listaResultados = $stmt->fetchAll();
+$listaResultados = $stmt->fetchAll();
 
-    foreach ($listaResultados as $row) {
-        print "<tr>";
-        print "<td>" . $row["id"] . "</td>";
-        print "<td>" . $row["nombre"] . "</td>";
-        print "<td>" . $row["descripcion"] . "</td>";
-        print "<td>" . number_format($row["precio"], 2) . " €</td>";
-        print '<td><button id="comprar" onclick="agregarCarrito(' . $row["id"] . ')">Añadir al carrito</button></td>';
-        print "</tr>";
-    }
-    ?>
-</table>
-<?php
+foreach ($listaResultados as $row) {
+    print "<tr>";
+    print "<td>" . $row["id"] . "</td>";
+    print "<td>" . $row["nombre"] . "</td>";
+    print "<td>" . $row["descripcion"] . "</td>";
+    print "<td>" . number_format($row["precio"], 2) . " €</td>";
+    print '<td>
+            <form method="POST" action="eliminarProducto.php">
+                <input type="hidden" name="id" value="' . $row["id"] . '">
+                <button type="submit">Eliminar</button>
+            </form>
+           </td>';
+    print "</tr>";
+}
+?>
 if (isset($_SESSION['nickname'])) {
     $nickname = $_SESSION['nickname'];
     print "Está conectado con este usuario: " . $nickname;
