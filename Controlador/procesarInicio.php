@@ -30,7 +30,7 @@ try {
         $_SESSION['usuario'] = $nickname;
         $_SESSION['id'] = $id;
 
-        header('Location: menu2.php');
+        header('Location: ../Vista/paginaPrincipal.php');
     }else{
         echo "Nombre de usuario o contraseña incorrectos";
     }
