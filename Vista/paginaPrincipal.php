@@ -53,9 +53,9 @@ if (isset($_SESSION['nickname'])) {
     print "No hay usuario registrado.";
 }
 ?>
-<p><a href="formAdd.php">Añadir producto</a></p>
-<p><a href="formDelete.php">Borrar producto</a></p>
-<p><a href="formUpdate.php">Actualizar producto</a></p>
-<p><a href="formSelect.php">Seleccionar producto</a></p>
+<p><a href="addProducto.php">Añadir producto</a></p>
+<p><a href="deleteProducto.php">Borrar producto</a></p>
+<p><a href="updateProducto.php">Actualizar producto</a></p>
+<p><a href="selectProducto.php">Seleccionar producto</a></p>
 </body>
 </html>
