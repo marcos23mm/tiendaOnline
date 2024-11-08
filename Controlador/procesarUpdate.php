@@ -7,29 +7,38 @@ $dbname = "tiendaPHP";
 $username = "root";
 $password = "";
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $id = $_POST['id'];
-        $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $precio = $_POST['precio'];
-
-        $stmt = $conn->prepare("UPDATE producto SET nombre = :nombre, descripcion = :descripcion, precio = :precio WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':descripcion', $descripcion);
-        $stmt->bindParam(':precio', $precio);
-
-        $stmt->execute();
-
-        header("Location: ../Vista/paginaPrincipal.php");
-        exit();
-    }
-} catch (PDOException $e) {
-    print "Error al actualizar producto: " . $e->getMessage();
-}
-$conn = null;
+$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar producto</title>
+</head>
+<body>
+<form action="../Controlador/procesarUpdate.php" method="POST">
+    <label>ID del producto:</label>
+    <input type="text" name="id" required>
+    <br>
+    <label>Nombre:</label>
+    <input type="text" name="nombre" required>
+    <br>
+    <label>Descripción:</label>
+    <input type="text" name="descripcion" required>
+    <br>
+    <label>Precio:</label>
+    <input type="number" name="precio" step="0.01" required>
+    <br>
+    <input type="submit" value="Actualizar producto">
+</form>
+<?php
+if (isset($_SESSION['nickname'])) {
+    $nickname = $_SESSION['nickname'];
+    print "Logeado con este usuario: " . $nickname;
+} else {
+    print "No hay usuario registrado.";
+}
+?>
+</body>
+</html>
