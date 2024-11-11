@@ -26,7 +26,7 @@ try {
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($usuario){
-        $_SESSION['nickname'] = $nickname;
+        $_SESSION['usuario'] = $nickname;
         $_SESSION['id'] = $id;
 
         header('Location: ../Vista/paginaPrincipal.php');
