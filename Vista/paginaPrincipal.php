@@ -72,9 +72,10 @@ try {
             echo "<p>Descripción: " . htmlspecialchars($producto['descripcion']) . "</p>";
             echo "<p>Precio: " . number_format($producto['precio'], 2) . " €</p>";
             print '<p>
-            <form method="POST" action="#">
-                <button type="submit">Añadir</button>
-            </form>
+            <form method="POST" action="procesarCarrito.php">
+                    <input type="hidden" name="id" value="' . htmlspecialchars($producto['id']) . '">
+                    <button type="submit" name="accion" value="añadir">Añadir</button>
+                </form>
            </p>';
             echo "</div>";
         }
