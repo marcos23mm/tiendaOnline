@@ -19,7 +19,6 @@ try {
 
     $stmt = $conn->prepare("SELECT id, nickname FROM Cliente WHERE nickname = :nombreUser AND password = :contrasena");
     $stmt->bindParam(':nombreUser', $nickname);
-    $stmt->bindParam(':id', $id);
     $stmt->bindParam(':contrasena', $password1);
 
     $stmt->execute();
