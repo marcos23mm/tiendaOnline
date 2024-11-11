@@ -30,7 +30,7 @@ session_start();
                 <?php else: ?>
                     <li><a href="inicioSesion.php">Iniciar sesión</a></li>
                 <?php endif; ?>
-                <li class="iconCa"><a href="#"><img src="shopping-cart-2-line (1).png"></a></li>
+                <li class="iconCa"><a href="vistaCarrito.php"><img src="shopping-cart-2-line (1).png"></a></li>
             </ul>
         </nav>
     </header>
