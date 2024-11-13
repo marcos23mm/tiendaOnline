@@ -1,41 +1,25 @@
 <?php
-
 session_name("");
 session_start();
 
-$servername = "localhost";
-$dbname = "";
-$username = "root";
-$password = "123";
-
-$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require_once '../Modelo/DAOCliente.php';
+require_once '../Modelo/DTOCliente.php';
 
 if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['nickname']) && isset($_POST['password']) && isset($_POST['telefono']) && isset($_POST['domicilio'])) {
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $nickname = $_POST['nickname'];
-    $contraseña = $_POST['password'];
-    $telefono = $_POST['telefono'];
-    $domicilio = $_POST['domicilio'];
+    try {
+        // Crear un nuevo objeto DTOCliente
+        $cliente = new DTOCliente(null, $_POST['nombre'], $_POST['apellido'], $_POST['nickname'], $_POST['password'], $_POST['telefono'], $_POST['domicilio']);
 
+        // Instanciar el DAO y añadir el cliente
+        $daoCliente = new DAOCliente();
+        $daoCliente->addCliente($cliente);
 
-    $stmt = $conn->prepare("INSERT INTO Cliente (nombre, apellido, nickname, password, telefono, domicilio) 
-                                VALUES (:nombre, :apellido, :nickname, :password, :telefono, :domicilio)");
-
-    $stmt->bindParam(':nombre', $nombre);
-    $stmt->bindParam(':apellido', $apellido);
-    $stmt->bindParam(':nickname', $nickname);
-    $stmt->bindParam(':password', $telefono);
-    $stmt->bindParam(':telefono', $contraseña);
-    $stmt->bindParam(':domicilio', $domicilio);
-
-    $stmt->execute();
-
-    header('Location: ../Vista/inicioSesion.php');
-
-}else{
-    echo "Son necesarios todos los campos";
+        // Redirigir a la página de inicio de sesión
+        header('Location: ../Vista/inicioSesion.php');
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
+} else {
+    echo "Todos los campos son obligatorios.";
 }
-
 ?>
