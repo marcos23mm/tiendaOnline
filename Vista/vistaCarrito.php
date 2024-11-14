@@ -75,6 +75,9 @@ try {
             </p>';
             echo "</div>";
         }
+        echo '<form method="POST" action="../Controlador/procesarCarrito.php" style="margin-top: 20px;">
+                <button type="submit" name="accion" value="vaciar">Vaciar carrito</button>
+              </form>';
     } else {
         echo "<p>El carrito está vacío</p>";
     }
