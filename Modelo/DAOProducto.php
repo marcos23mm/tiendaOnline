@@ -60,5 +60,27 @@ class DAOProducto {
 
         return $productos;
     }
+    public function buscarProductosPorNombre($nombre) {
+        $stmt = $this->conn->prepare("SELECT * FROM Producto WHERE nombre LIKE :nombre");
+        $nombre = "%" . $nombre . "%";
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->execute();
+        $productosData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $productos = [];
+        foreach ($productosData as $productoData) {
+            $producto = new DTOProducto(
+                $productoData['id'],
+                $productoData['nombre'],
+                $productoData['descripcion'],
+                $productoData['precio'],
+                isset($productoData['cliente_id']) ? $productoData['cliente_id'] : null
+            );
+            $productos[] = $producto;
+        }
+
+        return $productos;
+    }
+
 }
 ?>
