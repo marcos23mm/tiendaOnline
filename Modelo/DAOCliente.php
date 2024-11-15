@@ -9,16 +9,25 @@ class DAOCliente {
         $this->conn = DB::getConnection();
     }
 
-    public function getClienteById($id) {
-        $stmt = $this->conn->prepare("SELECT * FROM Cliente WHERE id = :id");
-        $stmt->bindParam(':id', $id);
+    public function getClienteById($nickname) {
+        $stmt = $this->conn->prepare("SELECT * FROM Cliente WHERE nickname = :nickname");
+        $stmt->bindParam(':nickname', $nickname);
         $stmt->execute();
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($fila) {
-            return new DTOCliente($fila['nombre'], $fila['apellido'], $fila['nickname'], $fila['password'], $fila['telefono'], $fila['domicilio']);
+            // Se devuelve un objeto DTOCliente
+            return new DTOCliente(
+                $fila['id'],
+                $fila['nombre'],
+                $fila['apellido'],
+                $fila['nickname'],
+                $fila['password'],
+                $fila['telefono'],
+                $fila['domicilio']
+            );
         } else {
-            return null; // Si no se encuentra, devolvemos null
+            return null; // Si no se encuentra el cliente, devolvemos null
         }
     }
 
