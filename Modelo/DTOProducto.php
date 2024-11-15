@@ -1,18 +1,22 @@
 <?php
-
 class DTOProducto {
+    private $id;
     private $nombre;
     private $descripcion;
     private $precio;
     private $clienteId;
 
-    public function __construct($nombre, $descripcion, $precio, $clienteId) {
+    public function __construct($id, $nombre, $descripcion, $precio, $clienteId = null) {
+        $this->setId($id);
         $this->setNombre($nombre);
         $this->setDescripcion($descripcion);
         $this->setPrecio($precio);
         $this->setClienteId($clienteId);
     }
 
+    public function getId() {
+        return $this->id;
+    }
     public function getNombre() {
         return $this->nombre;
     }
@@ -28,12 +32,20 @@ class DTOProducto {
     public function getClienteId() {
         return $this->clienteId;
     }
+    public function setId($id) {
+        if (empty($id)) {
+            throw new Exception("El ID es obligatorio.");
+        }
+
+        $this->id = $id;
+    }
 
     public function setNombre($nombre) {
         if (empty($nombre)) {
             throw new Exception("El nombre es obligatorio.");
         }
-        if (!preg_match('/^[a-zA-Z0-9\s]+$/', $nombre)) {
+
+        if (!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/', $nombre)) {
             throw new Exception("El nombre solo debe contener caracteres alfanuméricos.");
         }
 
@@ -64,12 +76,7 @@ class DTOProducto {
 
         $this->precio = $precio;
     }
-
     public function setClienteId($clienteId) {
-        if (empty($clienteId)) {
-            throw new Exception("El ID del cliente es obligatorio.");
-        }
-
         $this->clienteId = $clienteId;
     }
 }
