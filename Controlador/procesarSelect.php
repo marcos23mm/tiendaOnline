@@ -1,20 +1,15 @@
 <?php
-
 session_start();
-require_once '../Modelo/db.php';
+require_once '../Modelo/DAOProducto.php';
 
 if (isset($_POST['nombreP'])) {
     $nombreP = $_POST['nombreP'];
 
     try {
-        $conn = DB::getConnection();
+        $daoProducto = new DAOProducto();
 
-        $stmt = $conn->prepare("SELECT * FROM Producto WHERE LOWER(nombre) LIKE :palabra");
-        $nombreP = '%' . strtolower($nombreP) . '%';
-        $stmt->bindParam(':palabra', $nombreP, PDO::PARAM_STR);
-        $stmt->execute();
+        $productos = $daoProducto->buscarProductosPorNombre($nombreP);
 
-        $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($productos) {
             $_SESSION['resultadosBusqueda'] = $productos;
         } else {
@@ -28,4 +23,4 @@ if (isset($_POST['nombreP'])) {
         echo "Error al buscar el producto: " . $e->getMessage();
     }
 }
-
+?>
