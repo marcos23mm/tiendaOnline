@@ -1,5 +1,4 @@
 <?php
-
 require_once 'db.php';
 require_once 'DTOProducto.php';
 
@@ -41,7 +40,7 @@ class DAOProducto {
 
         return $producto && is_null($producto['cliente_id']);
     }
-    
+
     public function getTodosProductos() {
         $stmt = $this->conn->prepare("SELECT * FROM Producto");
         $stmt->execute();
@@ -49,11 +48,13 @@ class DAOProducto {
 
         $productos = [];
         foreach ($productosData as $productoData) {
-            $producto = new DTOProducto();
-            $producto->setId($productoData['id']);
-            $producto->setNombre($productoData['nombre']);
-            $producto->setDescripcion($productoData['descripcion']);
-            $producto->setPrecio($productoData['precio']);
+            $producto = new DTOProducto(
+                $productoData['id'],
+                $productoData['nombre'],
+                $productoData['descripcion'],
+                $productoData['precio'],
+                isset($productoData['cliente_id']) ? $productoData['cliente_id'] : null
+            );
             $productos[] = $producto;
         }
 
