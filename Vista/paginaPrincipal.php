@@ -83,4 +83,15 @@ $daoProducto = new DAOProducto();
 </div>
 
 </body>
+    <br></br>
+<footer class="footer">
+    <div class="footer-container">
+        <p>&copy; 2024 InformáticaTech. Todos los derechos reservados.</p>
+        <ul class="footer-links">
+            <li><a href="#about">Sobre Nosotros</a></li>
+            <li><a href="#privacy">Política de Privacidad</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </div>
+</footer>
 </html>
