@@ -10,7 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro de Producto</title>
     <link rel="stylesheet" href="paginaPrincipal.css">
-    <link rel="stylesheet" href="updateCSS.css">
+    <link rel="stylesheet" href="Recursos/updateCSS.css">
 </head>
 <br>
 <header>
