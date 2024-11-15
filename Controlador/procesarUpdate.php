@@ -8,7 +8,7 @@ if (isset($_POST['id'], $_POST['nombre'], $_POST['descripcion'], $_POST['precio'
     $id = $_POST['id'];
 
     try {
-        $producto = new DTOProducto($_POST['nombre'], $_POST['descripcion'], $_POST['precio']);
+        $producto = new DTOProducto($_POST['id'], $_POST['nombre'], $_POST['descripcion'], $_POST['precio']);
 
         $daoProducto = new DAOProducto();
         if ($daoProducto->updateProducto($id, $producto)) {
