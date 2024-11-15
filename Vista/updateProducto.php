@@ -10,7 +10,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Actualizar producto</title>
     <link rel="stylesheet" href="paginaPrincipal.css">
-    <link rel="stylesheet" href="updateCSS.css">
+    <link rel="stylesheet" href="Recursos/updateCSS.css">
 
 </head>
 <body>
