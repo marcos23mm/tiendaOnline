@@ -1,0 +1,59 @@
+.contenedor {
+    border: 1px solid black;
+    width: 400px; /* Aumenta el ancho del contenedor */
+    padding: 30px; /* Aumenta el espacio interno */
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    justify-content: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+}
+
+.titulo {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5em; /* Aumenta el tamaño de la fuente del título */
+    margin-bottom: 20px; /* Espacio inferior */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Asegura que ocupe todo el ancho sin desbordarse */
+    padding: 12px; /* Aumenta el padding para hacer más alta la caja */
+    font-size: 1.2em; /* Aumenta el tamaño de la fuente */
+    margin-bottom: 15px; /* Espacio entre campos */
+    box-sizing: border-box; /* Evita que el padding incremente el ancho total */
+}
+
+
+.boton {
+    width:100%; /* El botón ocupa todo el ancho */
+    padding: 10px; /* Aumenta el padding del botón */
+    font-size: 1.1em; /* Aumenta el tamaño de la fuente del botón */
+    cursor: pointer;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.botonRegistro{
+    width: 100%; /* El botón ocupa todo el ancho */
+    padding: 10px; /* Aumenta el padding del botón */
+    font-size: 1.1em; /* Aumenta el tamaño de la fuente del botón */
+    cursor: pointer;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Altura completa de la ventana */
+    margin: 0; /* Elimina márgenes del body */
+    background-color: #f8f8f8; /* Color de fondo para contraste */
+}
