@@ -54,16 +54,17 @@ class DTOCliente{
     }
 
     public function setNombre($nombre) {
-        if (!preg_match('/^[a-zA-Z\s]+$/', $nombre)) {
+        if (!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/', $nombre)) {
             throw new InvalidArgumentException("El nombre debe ser alfabético.");
         }
         $this->nombre = $nombre;
     }
 
     public function setApellido($apellido) {
-        if (!preg_match('/^[a-zA-Z\s]+$/', $apellido)) {
+        if (!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/', $apellido)) {
             throw new InvalidArgumentException("El apellido debe ser alfabético.");
         }
+
         $this->apellido = $apellido;
     }
 
