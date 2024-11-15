@@ -52,7 +52,7 @@ $daoProducto = new DAOProducto();
             <?php else: ?>
                 <li><a href="inicioSesion.php">Iniciar sesión</a></li>
             <?php endif; ?>
-            <li class="iconCa"><a href="vistaCarrito.php"><img src="shopping-cart-2-line (1).png"></a></li>
+            <li class="iconCa"><a href="vistaCarrito.php"><img src="../Recursos/shopping-cart-2-line%20(1).png"></a></li>
         </ul>
     </nav>
 </header>
@@ -83,7 +83,7 @@ $daoProducto = new DAOProducto();
 </div>
 
 </body>
-    <br></br>
+<br></br>
 <footer class="footer">
     <div class="footer-container">
         <p>&copy; 2024 InformáticaTech. Todos los derechos reservados.</p>
@@ -95,3 +95,5 @@ $daoProducto = new DAOProducto();
     </div>
 </footer>
 </html>
+
+
