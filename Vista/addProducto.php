@@ -9,9 +9,10 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro de Producto</title>
-    <link rel="stylesheet" href="Recursos/paginaPrincipal.css">
+    <link rel="stylesheet" href="paginaPrincipal.css">
+    <link rel="stylesheet" href="updateCSS.css">
 </head>
-<body>
+<br>
 <header>
     <div class="logo">
         <a href="paginaPrincipal.php">TiendaOnline</a>
@@ -38,7 +39,10 @@ session_start();
     </nav>
 </header>
 
-<form action="../Controlador/procesarAdd.php" method="post">
+<br></br>
+<br></br>
+
+<form action="../Controlador/procesarAdd.php" method="post" class="custom-form">
     <label for="nombre">Nombre del producto</label>
     <input type="text" name="nombre" id="nombre" required>
 
@@ -50,5 +54,6 @@ session_start();
 
     <input type="submit" value="Registrar Producto">
 </form>
+
 </body>
 </html>
