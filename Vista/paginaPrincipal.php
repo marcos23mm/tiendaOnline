@@ -1,22 +1,17 @@
 <?php
+require_once '../Modelo/DAOProducto.php';
 session_start();
-require_once '../Modelo/db.php'; // Asegúrate de que la ruta sea correcta
 
 try {
-    // Obtener la conexión utilizando la clase DB
-    $conn = DB::getConnection();
-
-    // Si no hay resultados de búsqueda en la sesión, se hace un SELECT * para mostrar todos los productos
+    $daoProducto = new DAOProducto();
     if (!isset($_SESSION['resultadosBusqueda'])) {
-        $stmt = $conn->prepare("SELECT * FROM Producto");
-        $stmt->execute();
-        $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $productos = $daoProducto->getTodosProductos();
     } else {
         $productos = $_SESSION['resultadosBusqueda'];
-        unset($_SESSION['resultadosBusqueda']); // Limpiar la sesión después de mostrar los resultados
+        unset($_SESSION['resultadosBusqueda']);
     }
 } catch (PDOException $e) {
-    echo "Error al conectarse a la base de datos: " . $e->getMessage();
+    echo "Error al obtener productos: " . $e->getMessage();
     $productos = [];
 }
 ?>
@@ -27,7 +22,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="paginaPrincipal.css">
+    <link rel="stylesheet" href="Recursos/paginaPrincipal.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
@@ -53,7 +48,7 @@ try {
             <?php else: ?>
                 <li><a href="inicioSesion.php">Iniciar sesión</a></li>
             <?php endif; ?>
-            <li class="iconCa"><a href="vistaCarrito.php"><img src="shopping-cart-2-line (1).png"></a></li>
+            <li class="iconCa"><a href="vistaCarrito.php"><img src="Recursos/shopping-cart-2-line%20(1).png"></a></li>
         </ul>
     </nav>
 </header>
@@ -62,16 +57,19 @@ try {
     <?php
     if (!empty($productos)) {
         foreach ($productos as $producto) {
+            $mostrarBoton = $daoProducto->esClienteIdNull($producto->getId());
             echo "<div class='producto'>";
-            echo "<h3> " . htmlspecialchars($producto['nombre']) . "</h3>";
-            echo "<p>Descripción: " . htmlspecialchars($producto['descripcion']) . "</p>";
-            echo "<p>Precio: " . number_format($producto['precio'], 2) . " €</p>";
-            print '<p>
-            <form method="POST" action="../Controlador/procesarCarrito.php">
-                    <input type="hidden" name="id" value="' . htmlspecialchars($producto['id']) . '">
+            echo "<h3> " . htmlspecialchars($producto->getNombre()) . "</h3>";
+            echo "<p>Descripción: " . htmlspecialchars($producto->getDescripcion()) . "</p>";
+            echo "<p>Precio: " . number_format($producto->getPrecio(), 2) . " €</p>";
+            if ($mostrarBoton) {
+                echo '<p>
+                <form method="POST" action="../Controlador/procesarCarrito.php">
+                    <input type="hidden" name="id" value="' . htmlspecialchars($producto->getId()) . '">
                     <button type="submit" name="accion" value="añadir">Añadir</button>
                 </form>
-           </p>';
+            </p>';
+            }
             echo "</div>";
         }
     } else {
@@ -79,6 +77,16 @@ try {
     }
     ?>
 </div>
-
 </body>
+<br></br>
+<footer class="footer">
+    <div class="footer-container">
+        <p>&copy; 2024 InformáticaTech. Todos los derechos reservados.</p>
+        <ul class="footer-links">
+            <li><a href="#about">Sobre Nosotros</a></li>
+            <li><a href="#privacy">Política de Privacidad</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </div>
+</footer>
 </html>

@@ -1,34 +1,26 @@
 <?php
-
 session_start();
-require_once '../Modelo/db.php';
+require_once '../Modelo/DAOProducto.php';
 
 if (isset($_POST['nombreP'])) {
     $nombreP = $_POST['nombreP'];
 
     try {
-        // Obtener la conexión usando la clase DB
-        $conn = DB::getConnection();
+        $daoProducto = new DAOProducto();
 
-        // Preparar la consulta con un comodín para el LIKE
-        $stmt = $conn->prepare("SELECT * FROM Producto WHERE LOWER(nombre) LIKE :palabra");
-        $nombreP = '%' . strtolower($nombreP) . '%'; // Convertir a minúsculas y añadir comodines
-        $stmt->bindParam(':palabra', $nombreP, PDO::PARAM_STR);
-        $stmt->execute();
+        $productos = $daoProducto->buscarProductosPorNombre($nombreP);
 
-        // Guardar los resultados en la sesión
-        $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($productos) {
-            $_SESSION['resultadosBusqueda'] = $productos; // Guardar todos los productos en la sesión
+            $_SESSION['resultadosBusqueda'] = $productos;
         } else {
-            $_SESSION['resultadosBusqueda'] = []; // Si no hay resultados, guardar un array vacío
+            $_SESSION['resultadosBusqueda'] = [];
         }
 
-        header("Location: ../Vista/paginaPrincipal.php"); // Redirigir a la vista
+        header("Location: ../Vista/paginaPrincipal.php");
         exit();
 
     } catch (PDOException $e) {
         echo "Error al buscar el producto: " . $e->getMessage();
     }
 }
-
+?>

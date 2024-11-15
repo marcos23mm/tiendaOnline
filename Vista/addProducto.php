@@ -10,8 +10,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro de Producto</title>
     <link rel="stylesheet" href="paginaPrincipal.css">
+    <link rel="stylesheet" href="Recursos/updateCSS.css">
 </head>
-<body>
+<br>
 <header>
     <div class="logo">
         <a href="paginaPrincipal.php">TiendaOnline</a>
@@ -33,12 +34,15 @@ session_start();
             <?php else: ?>
                 <li><a href="inicioSesion.php">Iniciar sesión</a></li>
             <?php endif; ?>
-            <li class="iconCa"><a href="vistaCarrito.php"><img src="shopping-cart-2-line (1).png"></a></li>
+            <li class="iconCa"><a href="vistaCarrito.php"><img src="Recursos/shopping-cart-2-line%20(1).png"></a></li>
         </ul>
     </nav>
 </header>
 
-<form action="../Controlador/procesarAdd.php" method="post">
+<br></br>
+<br></br>
+
+<form action="../Controlador/procesarAdd.php" method="post" class="custom-form">
     <label for="nombre">Nombre del producto</label>
     <input type="text" name="nombre" id="nombre" required>
 
@@ -50,5 +54,6 @@ session_start();
 
     <input type="submit" value="Registrar Producto">
 </form>
+
 </body>
 </html>

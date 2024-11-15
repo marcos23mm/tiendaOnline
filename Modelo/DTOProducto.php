@@ -1,18 +1,23 @@
 <?php
 
 class DTOProducto {
+    private $id;
     private $nombre;
     private $descripcion;
     private $precio;
     private $clienteId;
 
-    public function __construct($nombre, $descripcion, $precio, $clienteId) {
+    public function __construct($id, $nombre, $descripcion, $precio, $clienteId = null) {
+        $this->setId($id);
         $this->setNombre($nombre);
         $this->setDescripcion($descripcion);
         $this->setPrecio($precio);
         $this->setClienteId($clienteId);
     }
 
+    public function getId() {
+        return $this->id;
+    }
     public function getNombre() {
         return $this->nombre;
     }
@@ -28,13 +33,20 @@ class DTOProducto {
     public function getClienteId() {
         return $this->clienteId;
     }
+    public function setId($id) {
+        if (empty($id)) {
+            throw new Exception("El ID es obligatorio.");
+        }
+
+        $this->id = $id;
+    }
 
     public function setNombre($nombre) {
-        // Validación: Campo obligatorio y solo caracteres alfanuméricos
         if (empty($nombre)) {
             throw new Exception("El nombre es obligatorio.");
         }
-        if (!preg_match('/^[a-zA-Z0-9\s]+$/', $nombre)) {
+
+        if (!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/', $nombre)) {
             throw new Exception("El nombre solo debe contener caracteres alfanuméricos.");
         }
 
@@ -42,7 +54,6 @@ class DTOProducto {
     }
 
     public function setDescripcion($descripcion) {
-        // Validación: Campo obligatorio
         if (empty($descripcion)) {
             throw new Exception("La descripción es obligatoria.");
         }
@@ -51,7 +62,6 @@ class DTOProducto {
     }
 
     public function setPrecio($precio) {
-        // Validación: Campo obligatorio y debe ser un valor positivo
         if (empty($precio)) {
             throw new Exception("El precio es obligatorio.");
         }
@@ -59,22 +69,9 @@ class DTOProducto {
             throw new Exception("El precio debe ser un valor numérico positivo.");
         }
 
-        // Añadir literal según el valor del precio
-        if ($precio < 10) {
-            $this->descripcion .= " - producto de oferta";
-        } elseif ($precio > 200) {
-            $this->descripcion .= " - producto de calidad";
-        }
-
         $this->precio = $precio;
     }
-
     public function setClienteId($clienteId) {
-        // Validación: Campo obligatorio
-        if (empty($clienteId)) {
-            throw new Exception("El ID del cliente es obligatorio.");
-        }
-
         $this->clienteId = $clienteId;
     }
 }

@@ -1,5 +1,4 @@
 <?php
-session_name("");
 session_start();
 
 ?>
@@ -9,9 +8,16 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    <link rel="stylesheet" href="hojaEstilo2.css">
+    <link rel="stylesheet" href="Recursos/hojaEstilo2.css">
 </head>
 <body>
+
+<div class="logo-container">
+    <a href="paginaPrincipal.php">
+        <img src="Recursos/logo.png" alt="Página Principal">
+    </a>
+</div>
+
 <div class="contenedor">
     <form action="../Controlador/procesarRegistro.php" method="post">
 
@@ -32,12 +38,12 @@ session_start();
         <br></br>
 
         <label for="password"></label>
-        <input type="text" name="password" id="password" placeholder="Contraseña">
+        <input type="password" name="password" id="password" placeholder="Contraseña">
 
         <br></br>
 
         <label for="telefono"></label>
-        <input type="password" name="telefono" id="telefono" placeholder="Telefono" >
+        <input type="text" name="telefono" id="telefono" placeholder="Telefono" >
 
         <br></br>
 

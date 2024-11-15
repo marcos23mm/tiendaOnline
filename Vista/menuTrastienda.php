@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    <link rel="stylesheet" href="paginaPrincipal.css">
+    <link rel="stylesheet" href="Recursos/paginaPrincipal.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
 
@@ -32,7 +32,7 @@ session_start();
                 <?php else: ?>
                     <li><a href="inicioSesion.php">Iniciar sesión</a></li>
                 <?php endif; ?>
-                <li class="iconCa"><a href="vistaCarrito.php"><img src="shopping-cart-2-line (1).png"></a></li>
+                <li class="iconCa"><a href="vistaCarrito.php"><img src="Recursos/shopping-cart-2-line%20(1).png"></a></li>
             </ul>
         </nav>
     </header>

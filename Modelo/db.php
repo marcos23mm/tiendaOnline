@@ -3,7 +3,7 @@ class DB {
     private static $host = 'localhost';
     private static $dbName = 'tiendaPHP';
     private static $username = 'root';
-    private static $password = '123';
+    private static $password = '';
     private static $conn = null;
 
     public static function getConnection() {

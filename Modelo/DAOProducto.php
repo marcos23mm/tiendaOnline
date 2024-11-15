@@ -1,5 +1,4 @@
 <?php
-
 require_once 'db.php';
 require_once 'DTOProducto.php';
 
@@ -33,6 +32,15 @@ class DAOProducto {
         return $stmt->execute();
     }
 
+    public function esClienteIdNull($id) {
+        $stmt = $this->conn->prepare("SELECT cliente_id FROM Producto WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $producto && is_null($producto['cliente_id']);
+    }
+
     public function getTodosProductos() {
         $stmt = $this->conn->prepare("SELECT * FROM Producto");
         $stmt->execute();
@@ -40,15 +48,39 @@ class DAOProducto {
 
         $productos = [];
         foreach ($productosData as $productoData) {
-            $producto = new DTOProducto();
-            $producto->setId($productoData['id']);
-            $producto->setNombre($productoData['nombre']);
-            $producto->setDescripcion($productoData['descripcion']);
-            $producto->setPrecio($productoData['precio']);
+            $producto = new DTOProducto(
+                $productoData['id'],
+                $productoData['nombre'],
+                $productoData['descripcion'],
+                $productoData['precio'],
+                isset($productoData['cliente_id']) ? $productoData['cliente_id'] : null
+            );
             $productos[] = $producto;
         }
 
         return $productos;
     }
+    public function buscarProductosPorNombre($nombre) {
+        $stmt = $this->conn->prepare("SELECT * FROM Producto WHERE nombre LIKE :nombre");
+        $nombre = "%" . $nombre . "%";
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->execute();
+        $productosData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $productos = [];
+        foreach ($productosData as $productoData) {
+            $producto = new DTOProducto(
+                $productoData['id'],
+                $productoData['nombre'],
+                $productoData['descripcion'],
+                $productoData['precio'],
+                isset($productoData['cliente_id']) ? $productoData['cliente_id'] : null
+            );
+            $productos[] = $producto;
+        }
+
+        return $productos;
+    }
+
 }
 ?>

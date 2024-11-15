@@ -16,9 +16,7 @@ class DAOCliente {
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($fila) {
-            // Se devuelve un objeto DTOCliente
             return new DTOCliente(
-                $fila['id'],
                 $fila['nombre'],
                 $fila['apellido'],
                 $fila['nickname'],
@@ -27,11 +25,11 @@ class DAOCliente {
                 $fila['domicilio']
             );
         } else {
-            return null; // Si no se encuentra el cliente, devolvemos null
+            return null;
         }
     }
 
-    public function getAllClientes() {
+    public function getAllClientes() { //Hecha "por si acaso"
         $stmt = $this->conn->prepare("SELECT * FROM Cliente");
         $stmt->execute();
         $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,7 +40,7 @@ class DAOCliente {
             $clientes[] = $cliente;
         }
 
-        return $clientes; // Retornamos una lista de objetos DTOCliente
+        return $clientes;
     }
 
     public function addCliente($cliente) {
@@ -56,7 +54,7 @@ class DAOCliente {
         return $stmt->execute();
     }
 
-    public function updateCliente($cliente) {
+    public function updateCliente($cliente) { //Hecha también "por si acaso"
         $stmt = $this->conn->prepare("UPDATE Cliente SET nombre = :nombre, apellido = :apellido, nickname = :nickname, password = :password, telefono = :telefono, domicilio = :domicilio WHERE id = :id");
         $stmt->bindParam(':id', $cliente->getId());
         $stmt->bindParam(':nombre', $cliente->getNombre());
@@ -68,7 +66,7 @@ class DAOCliente {
         return $stmt->execute();
     }
 
-    public function deleteCliente($id) {
+    public function deleteCliente($id) { //Y también por si acaso...
         $stmt = $this->conn->prepare("DELETE FROM Cliente WHERE id = :id");
         $stmt->bindParam(':id', $id);
         return $stmt->execute();

@@ -1,11 +1,10 @@
 <?php
 session_start();
-require_once '../Modelo/db.php'; // Asegúrate de que la ruta sea correcta
+require_once '../Modelo/db.php';
 
 try {
-    $conn = DB::getConnection(); // Obtener la conexión usando la clase DB
+    $conn = DB::getConnection();
 
-    // Obtener el carrito de la sesión o inicializarlo vacío
     $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
 
     if (!empty($carrito)) {
@@ -26,7 +25,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="paginaPrincipal.css">
+    <link rel="stylesheet" href="Recursos/paginaPrincipal.css">
 </head>
 <body>
 <header>
@@ -50,7 +49,7 @@ try {
             <?php else: ?>
                 <li><a href="inicioSesion.php">Iniciar sesión</a></li>
             <?php endif; ?>
-            <li class="iconCa"><a href="vistaCarrito.php"><img src="shopping-cart-2-line (1).png"></a></li>
+            <li class="iconCa"><a href="vistaCarrito.php"><img src="Recursos/shopping-cart-2-line%20(1).png"></a></li>
         </ul>
     </nav>
 </header>

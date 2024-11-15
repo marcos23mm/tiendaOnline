@@ -8,8 +8,7 @@ class DTOCliente{
     private $telefono;
     private $domicilio;
 
-    public function __construct($id, $nombre, $apellido, $nickname, $password, $telefono, $domicilio){
-        $this->setId($id);
+    public function __construct($nombre, $apellido, $nickname, $password, $telefono, $domicilio){
         $this->setNombre($nombre);
         $this->setApellido($apellido);
         $this->setNickname($nickname);
@@ -79,7 +78,7 @@ class DTOCliente{
         if (strlen($password) < 6) {
             throw new InvalidArgumentException("La contraseña debe tener al menos 6 caracteres.");
         }
-        $this->password = password_hash($password, PASSWORD_DEFAULT); // Hash para mayor seguridad
+        $this->password = $password;
     }
 
     public function setTelefono($telefono) {

@@ -6,7 +6,8 @@ require_once '../Modelo/DTOProducto.php';
 
 if (isset($_POST['nombre'], $_POST['descripcion'], $_POST['precio'])) {
     try {
-        $producto = new DTOProducto($_POST['nombre'], $_POST['descripcion'], $_POST['precio']);
+        $id = uniqid(); //La base de datos es autoincremental. Aún con ello, hemos de asignar esta id para que funcione.
+        $producto = new DTOProducto($id, $_POST['nombre'], $_POST['descripcion'], $_POST['precio']);
 
         $daoProducto = new DAOProducto();
         if ($daoProducto->addProducto($producto)) {

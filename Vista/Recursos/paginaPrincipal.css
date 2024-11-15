@@ -3,7 +3,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #f8f8f8; /* Ajusta el color de fondo según lo que necesites */
+    background-color: #f8f8f8;
 }
 
 .logo {
@@ -11,14 +11,14 @@ header {
 }
 
 .logo img {
-    max-height: 50px; /* Ajusta la altura del logo según sea necesario */
+    max-height: 50px;
 }
 
 nav {
     flex: 2;
     display: flex;
     justify-content: center;
-    align-items: center; /* Alinea verticalmente */
+    align-items: center;
 }
 
 .nav-links {
@@ -37,13 +37,13 @@ nav {
     position: relative;
     display: flex;
     align-items: center;
-    margin: 0 auto; /* Centra horizontalmente */
-    margin-right: 500px; /* Mantiene tu margen adaptado */
+    margin: 0 auto;
+    margin-right: 500px;
 }
 
 .search-container input[type="text"] {
-    padding: 10px 40px 10px 10px; /* Incrementa el padding vertical y espacio para el botón */
-    width: 400px; /* Mantén el ancho actual */
+    padding: 10px 40px 10px 10px;
+    width: 400px;
     border: 1px solid #ccc;
     border-radius: 20px;
     outline: none;
@@ -58,12 +58,12 @@ nav {
     background: none;
     cursor: pointer;
     outline: none;
-    font-size: 18px; /* Tamaño del ícono */
-    color: #333; /* Ajusta el color del ícono */
+    font-size: 18px;
+    color: #333;
 }
 
 .nav-links a img {
-    width: 30px; /* Ajusta el tamaño de los íconos */
+    width: 30px;
     height: 30px;
 }
 
@@ -72,8 +72,8 @@ nav {
 }
 
 .logo a {
-    text-decoration: none; /* Quita la línea de los enlaces */
-    color: inherit; /* Quita el color de los enlaces y usa el color heredado */
+    text-decoration: none;
+    color: inherit;
 }
 
 /*/////////////////////// Divs del select /////////////////////////////*/
@@ -105,3 +105,48 @@ nav {
     margin: 10px 0;
 }
 
+/*//////////////////////////////////////*/
+
+
+/* Footer */
+.footer {
+    background-color: #f8f8f8;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-links li {
+    display: inline;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #0056b3;
+}

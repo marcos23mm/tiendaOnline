@@ -7,14 +7,12 @@ if (isset($_POST['cliente']) && isset($_POST['contraseña'])) {
     $password1 = $_POST['contraseña'];
 
     try {
-        // Crear una instancia del DAOCliente
         $daoCliente = new DAOCliente();
 
-        // Buscar el cliente por su nickname
         $cliente = $daoCliente->getClienteById($nickname);
 
-        if ($cliente && password_verify($password1, $cliente->getPassword())) {
-            $_SESSION['usuario'] = $cliente->getNickname(); // Guardar el nickname del cliente en la sesión
+        if ($cliente && $password1 === $cliente->getPassword()) {
+            $_SESSION['usuario'] = $cliente->getNickname();
             header('Location: ../Vista/paginaPrincipal.php');
             exit;
         } else {
