@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../Modelo/db.php';
+require_once '../Modelo/DAOProducto.php';
 
 try {
     $conn = DB::getConnection();
@@ -16,6 +17,7 @@ try {
     echo "Error al conectarse a la base de datos: " . $e->getMessage();
     $productos = [];
 }
+$daoProducto = new DAOProducto();
 ?>
 
 <!DOCTYPE html>
@@ -59,16 +61,19 @@ try {
     <?php
     if (!empty($productos)) {
         foreach ($productos as $producto) {
+            $mostrarBoton = $daoProducto->esClienteIdNull($producto['id']);
             echo "<div class='producto'>";
             echo "<h3> " . htmlspecialchars($producto['nombre']) . "</h3>";
             echo "<p>Descripción: " . htmlspecialchars($producto['descripcion']) . "</p>";
             echo "<p>Precio: " . number_format($producto['precio'], 2) . " €</p>";
-            print '<p>
-            <form method="POST" action="../Controlador/procesarCarrito.php">
+            if ($mostrarBoton) {
+                echo '<p>
+                <form method="POST" action="../Controlador/procesarCarrito.php">
                     <input type="hidden" name="id" value="' . htmlspecialchars($producto['id']) . '">
                     <button type="submit" name="accion" value="añadir">Añadir</button>
                 </form>
-           </p>';
+            </p>';
+            }
             echo "</div>";
         }
     } else {
