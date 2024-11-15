@@ -68,12 +68,6 @@ class DTOProducto {
             throw new Exception("El precio debe ser un valor numérico positivo.");
         }
 
-        if ($precio < 10) {
-            $this->descripcion .= " - producto de oferta";
-        } elseif ($precio > 200) {
-            $this->descripcion .= " - producto de calidad";
-        }
-
         $this->precio = $precio;
     }
     public function setClienteId($clienteId) {
