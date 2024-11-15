@@ -9,7 +9,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Actualizar producto</title>
-    <link rel="stylesheet" href="Recursos/paginaPrincipal.css">
+    <link rel="stylesheet" href="paginaPrincipal.css">
+    <link rel="stylesheet" href="updateCSS.css">
 
 </head>
 <body>
@@ -40,7 +41,10 @@ session_start();
     </nav>
 </header>
 
-<form action="../Controlador/procesarUpdate.php" method="POST">
+<br></br>
+<br></br>
+
+<form action="../Controlador/procesarUpdate.php" method="POST" class="custom-form">
     <label>ID del producto:</label>
     <input type="text" name="id" required>
     <br>
@@ -56,5 +60,8 @@ session_start();
     <input type="submit" value="Actualizar producto">
 </form>
 
+
 </body>
 </html>
+
+
