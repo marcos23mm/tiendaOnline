@@ -11,14 +11,11 @@ session_start();
     <link rel="stylesheet" href="hojaEstilo.css">
 </head>
 <body>
-<!-- Contenedor para la imagen del logo -->
 <div class="logo-container">
     <a href="paginaPrincipal.php">
         <img src="logo.png" alt="Página Principal">
     </a>
 </div>
-
-<!-- Contenedor del formulario -->
 <div class="contenedor">
     <form action="../Controlador/procesarInicio.php" method="post">
         <p class="titulo">Iniciar Sesión</p>
