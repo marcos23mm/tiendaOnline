@@ -1,23 +1,19 @@
 <?php
 session_start();
-require_once '../Modelo/db.php';
 require_once '../Modelo/DAOProducto.php';
 
 try {
-    $conn = DB::getConnection();
+    $daoProducto = new DAOProducto();
     if (!isset($_SESSION['resultadosBusqueda'])) {
-        $stmt = $conn->prepare("SELECT * FROM Producto");
-        $stmt->execute();
-        $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $productos = $daoProducto->getTodosProductos();
     } else {
         $productos = $_SESSION['resultadosBusqueda'];
         unset($_SESSION['resultadosBusqueda']);
     }
 } catch (PDOException $e) {
-    echo "Error al conectarse a la base de datos: " . $e->getMessage();
+    echo "Error al obtener productos: " . $e->getMessage();
     $productos = [];
 }
-$daoProducto = new DAOProducto();
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +48,7 @@ $daoProducto = new DAOProducto();
             <?php else: ?>
                 <li><a href="inicioSesion.php">Iniciar sesión</a></li>
             <?php endif; ?>
-            <li class="iconCa"><a href="vistaCarrito.php"><img src="../Recursos/shopping-cart-2-line%20(1).png"></a></li>
+            <li class="iconCa"><a href="vistaCarrito.php"><img src="shopping-cart-2-line (1).png"></a></li>
         </ul>
     </nav>
 </header>
@@ -61,15 +57,15 @@ $daoProducto = new DAOProducto();
     <?php
     if (!empty($productos)) {
         foreach ($productos as $producto) {
-            $mostrarBoton = $daoProducto->esClienteIdNull($producto['id']);
+            $mostrarBoton = $daoProducto->esClienteIdNull($producto->getId());
             echo "<div class='producto'>";
-            echo "<h3> " . htmlspecialchars($producto['nombre']) . "</h3>";
-            echo "<p>Descripción: " . htmlspecialchars($producto['descripcion']) . "</p>";
-            echo "<p>Precio: " . number_format($producto['precio'], 2) . " €</p>";
+            echo "<h3> " . htmlspecialchars($producto->getNombre()) . "</h3>";
+            echo "<p>Descripción: " . htmlspecialchars($producto->getDescripcion()) . "</p>";
+            echo "<p>Precio: " . number_format($producto->getPrecio(), 2) . " €</p>";
             if ($mostrarBoton) {
                 echo '<p>
                 <form method="POST" action="../Controlador/procesarCarrito.php">
-                    <input type="hidden" name="id" value="' . htmlspecialchars($producto['id']) . '">
+                    <input type="hidden" name="id" value="' . htmlspecialchars($producto->getId()) . '">
                     <button type="submit" name="accion" value="añadir">Añadir</button>
                 </form>
             </p>';
@@ -81,7 +77,6 @@ $daoProducto = new DAOProducto();
     }
     ?>
 </div>
-
 </body>
 <br></br>
 <footer class="footer">
@@ -95,5 +90,3 @@ $daoProducto = new DAOProducto();
     </div>
 </footer>
 </html>
-
-
