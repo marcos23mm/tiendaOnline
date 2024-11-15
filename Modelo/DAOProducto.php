@@ -33,6 +33,15 @@ class DAOProducto {
         return $stmt->execute();
     }
 
+    public function esClienteIdNull($id) {
+        $stmt = $this->conn->prepare("SELECT cliente_id FROM Producto WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $producto && is_null($producto['cliente_id']);
+    }
+    
     public function getTodosProductos() {
         $stmt = $this->conn->prepare("SELECT * FROM Producto");
         $stmt->execute();
