@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once '../Modelo/DAOProducto.php';
+session_start();
 
 try {
     $daoProducto = new DAOProducto();
