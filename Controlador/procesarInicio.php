@@ -11,7 +11,7 @@ if (isset($_POST['cliente']) && isset($_POST['contraseña'])) {
 
         $cliente = $daoCliente->getClienteById($nickname);
 
-        if ($cliente && password_verify($password1, $cliente->getPassword())) {
+        if ($cliente && $password1 === $cliente->getPassword()) {
             $_SESSION['usuario'] = $cliente->getNickname();
             header('Location: ../Vista/paginaPrincipal.php');
             exit;
